@@ -1,0 +1,118 @@
+@charset "utf-8";
+/* CSS Document */
+/* Basic */
+body {
+	/* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+	background-color: #F5F5F5 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 800;
+	letter-spacing: 0.04em;
+	color: #404248;
+	margin: 0 0 1em 0;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	color: inherit;
+	text-decoration: none;
+	outline: 0;
+}
+
+/* List */
+ul.menu li {
+	border-left: solid 1px #eee;
+	display: inline-block;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+/* Header */
+/*#header {
+	position: relative;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 0.75em;
+	margin-bottom: 0;
+}
+
+	#header .inner {
+		background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35)), url("img/bg02.png");
+		background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35)), url("img/bg02.png");
+		background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35)), url("img/bg02.png");
+		background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35)), url("img/bg02.png");
+		position: relative;
+		height: 5.5em;
+		background-color: #3B3E45;
+		background-color: rgba(59, 62, 69, 0.9);
+		border-radius: 8px;
+		box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.45), inset 0px 2px 1px 0px rgba(255, 255, 255, 0.15);
+		text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+	}
+	
+	#header h1 {
+		position: absolute;
+		left: 1.75em;
+		top: 50%;
+		margin-top: -0.65em;
+		font-size: 1.5em;
+		color: #fff;
+	}
+*/
+/* Footer */
+#footer {
+	margin-bottom: 0;
+	text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+	position: relative;
+	z-index: 2;
+}
+
+	#footer a {
+		color: #acb2bf;
+	}
+
+	#footer ul.menu {
+		margin: 0;
+	}
+
+#copyright {
+	border-top: solid 1px;
+	border-color: #444;
+	border-color: rgba(255, 255, 255, 0.075);
+	text-align: center;
+	margin-top: 2em;
+	padding: 3em 0 4em 0;
+	color: inherit;
+}
+
+	#copyright a {
+		color: inherit;
+	}
+
+
+#content {
+	padding: 1em 0 0 0;
+}
+
+/* Go Top */
+#goTop a {
+	position:fixed;
+	z-index:90;
+	right:30px;
+	bottom:31px;
+	display:none;
+	width:50px;
+	height:50px;
+	color:#fff;
+	background:#33b5e5;
+	line-height:50px;
+	border-radius:50%;
+	transition:all 0.5s;
+	text-align: center;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+#goTop a:hover {
+	background:#0099CC;
+}
+

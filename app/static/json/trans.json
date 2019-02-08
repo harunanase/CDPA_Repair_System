@@ -1,0 +1,36 @@
+{
+  "zh": {
+    "LANG": "中文",
+    "LOGIN": "登入",
+    "LOGOUT": "登出",
+    "REQUEST": "申請維修",
+    "PROGRESS": "查詢進度",
+    "BLOCKLIST": "封鎖列表",
+    "TUTORIAL": "各式教學",
+    "TROUBLE": "簡易問題排除",
+    "IPDIST": "查詢IP分配表",
+    "MACADDR": "查詢網路卡號",
+    "CONFLICT": "查詢IP佔用卡號",
+    "HOME": "回到首頁",
+    "NOTICE1": "請尊重智慧財產權，勿下載版權保護軟體。",
+    "NOTICE2": "若您無法正確瀏覽本系統，請嘗試使用其他瀏覽器，謝謝。",
+    "NOTICE3": "若報修後超過兩週以上無人處理，請優先私訊CDPA的Facebook粉絲專頁！"
+  },
+  "en": {
+    "LANG": "English",
+    "LOGIN": "Sign In",
+    "LOGOUT": "Sign Out",
+    "REQUEST": "Fix Request",
+    "PROGRESS": "Progress",
+    "BLOCKLIST": "Blocked List",
+    "TUTORIAL": "Tutorial",
+    "TROUBLE": "Troubleshooting",
+    "IPDIST": "IP Distribution",
+    "MACADDR": "MAC Address",
+    "CONFLICT": "IP Conflict",
+    "HOME": "Home",
+    "NOTICE1": "Please respect the intellectual property rights, do not download copyright protection software.",
+    "NOTICE2": "If you are not able to correctly viewing the web page, please change your Browser, thank you.",
+    "NOTICE3": ""
+  }
+}
