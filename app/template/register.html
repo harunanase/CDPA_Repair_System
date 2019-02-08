@@ -1,0 +1,79 @@
+<!--
+	register page
+    1.0		190121		by imgc
+    1.1		190121		重新調整表
+    
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Register</title>
+<link rel="stylesheet" type="text/css" href={{ url_for("static", filename="css/imgc.css") }}></link>
+</head>
+
+<body style="background-color:#f5f5f5">
+	<div id="content-1" class="box">
+	{% if current_user.is_authenticated %}
+			<h3>Hi {{ current_user.username }}! </h3>
+		{% else %}
+			<h3>Hi guest, please log in</h3>
+	{% endif %}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<h5 style="color:red";>{{ message }}</h5>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+    <div id="registerController"><!-- 填表區域 -->
+    	<h3>Sign Up</h3>
+		<form id="registerForm" action={{ url_for("regist_request") }} method="post" onInput="checkForm('register',this)" onSubmit="return submitForm('register',this)"><!-- 註冊表單 -->
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <table >
+            	<tr>
+                    <td><label id="labal_account">帳號 account</label></td>
+                    <td><input name="account" type="text" placeholder="your student id" required="required"/></td>
+                </tr>
+                <tr>
+                    <td><label  id="labal_mailbox">信箱 e-mail</label></td>
+                    <td><input name="mailbox" type="text" required="required"/></td>
+                </tr>
+                <tr>
+                    <td><label id="label_password">密碼 password</label></td>
+                    <td><input name="password" type="password" pattern="[0-9a-zA-Z]{4,32}" placeholder="only contain 0-9,a-z or A-Z" required="required"/></td>
+                </tr>
+                <tr>
+                    <td><label id="labal_verify">密碼確認 verify </label></td><!-- password double check -->
+                    <td><input name="verify" type="password" pattern="[0-9a-zA-Z]{0,32}" placeholder="retype your password"/></td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input id="register_submit" name="submit" type="submit" value="送出/send"/></td>
+                </tr>
+            </table>
+        </form>
+        <span id="info" style="color:red">&nbsp;</span>
+    </div>
+</div>
+<div id="content-2" class="box">
+  <div id="contentDescription"><!-- 補充說明區域 -->
+    	<h3>Description</h3>
+        <div id="description">
+        	wait for loading js...
+        </div>
+  </div>
+</div>
+
+
+<!--
+script
+-->
+<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
+<script type="text/javascript" src={{ url_for("static", filename="js/md5.js") }}></script>
+<script type="text/javascript" src={{ url_for("static", filename="js/account.js") }}></script>
+<script type="text/javascript" src={{ url_for("static", filename="js/register.js") }}></script>
+</body>
+</html>

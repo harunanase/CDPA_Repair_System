@@ -1,0 +1,80 @@
+<!--
+	login page
+    1.0		190118		by imgc
+    1.1		190121		重新調整表單
+    1.2		190201		修改id
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Sign In</title>
+<link rel="stylesheet" type="text/css" href={{ url_for("static", filename="css/imgc.css") }}></link>
+<!-- CSS -->
+		<link rel="stylesheet" href={{ url_for("static", filename="css/bootstrap.min.css") }}>
+		<link rel="stylesheet" href={{ url_for("static", filename="css/fontawesome.min.css") }}>
+		<link rel="stylesheet" href={{ url_for("static", filename="css/main.css") }}>
+
+</head>
+
+<body style="background-color:#f5f5f5;">
+	<div id="content-1" class="box">
+	{% if current_user.is_authenticated %}
+			<h3>Hi {{ current_user.username }}! </h3>
+		{% else %}
+			<h3>Hi guest, please log in</h3>
+	{% endif %}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<h5 style="color:red";>{{ message }}</h5>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	
+	<div id="loginController"><!-- 填表區域 -->
+    	<h3>Log In</h3>
+		<form id="loginForm" action={{ url_for("login") }} method="post" onSubmit="return submitForm('login',this)"><!-- 登入表單 -->
+           	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/> 
+			<table>
+                <tr>
+                    <td><label id="labal_account">帳號 account</label></td>
+                    <td><input name="account" type="text" required="required"/></td>
+                </tr>
+                <tr>
+                    <td><label id="label_password">密碼 password</label></td>
+                    <td><input name="password" type="password" required="required"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input id="login_submit" name="submit" type="submit" value="登入/log in"/></td>
+                </tr>
+            </table>
+	</form>
+        <span id="info" style="color:red">&nbsp;</span>
+    </div>
+    <div>
+		<a id="link_register" href={{ url_for("regist_request") }}>註冊 Register</a>
+        <br/>
+        <a id="forget" href="">忘記密碼 Forget password?</a>
+    </div>
+</div>
+<div id="content-2" class="box">
+  <div id="contentDescription"><!-- 補充說明區域 -->
+    	<h3>Description</h3>
+        <div id="description">
+        	wait for loading js...
+        </div>
+  </div>
+</div>
+
+<!--
+script
+-->
+		<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
+		<script type="text/javascript" src={{ url_for("static", filename="js/md5.js") }}></script>
+		<script type="text/javascript" src={{ url_for("static", filename="js/account.js") }}></script>
+		<script type="text/javascript" src={{ url_for("static", filename="js/login.js") }}></script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+		<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
+		<script type="text/javascript" src={{ url_for("static", filename="js/form_lang.js") }}></script>
+	<title>CDPA 報修單</title>
+</head>
+<!--
+	2019/1/31 chia-chih updated
+	修正頁面為可用jQuery進行中英文切換
+	2019/1/25 chia-chih updated
+	修正form 的字元集為UTF-8
+	2019/1/20 chia-chih updated
+	此頁面只提供報修的介面，不提供已報修的單子的查詢、修改...等。
+	已做: 
+		報修單格式: 棟別、房號、床號、IP、MAC、問題描述
+\
+-->
+<body>
+
+	{% if current_user.is_authenticated %}
+		<h3>Hi {{ current_user.username }}! </h3>
+	{% else %}
+		<h3>Hi guest, please log in</h3>
+	{% endif %}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<h5 style="color:red";>{{ message }}</h5>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+<div class="fill_form">
+	<form id="repairForm" action="{{ url_for("form") }}" method="POST" accept-charset="UTF-8">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+		<b class="lang" key="DORM"></b><br />
+		<select name="dorm">
+			<option value="A" selected="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+			<option value="D">D</option>
+			<option value="E">E</option>
+			<option value="F">F</option>
+			<option value="G">G</option>
+			<option value="H">H</option>
+			<option value="L">L</option>
+			<option value="one" class="lang" key="VILLAGE1"></option>
+			<option value="two" class="lang" key="VILLAGE2"></option>
+			<option value="three" class="lang" key="VILLAGE3"></option>
+			<option value="four" class="lang" key="VILLAGE4"></option>
+			<option value="internationl" class="lang" key="INTERNATIONAL"></option>
+		</select><br />
+
+		<b class="lang" key="ROOMNO"></b><br />
+		<input type="number" name="roomNo" required="required" min="1" max="999" value="1" /><br />
+		<b class="lang" key="BEDNO"></b><br />
+		<input type="number" name="bedNo" required="required" min="1" max="4" value="1" /><br />
+		<b class="lang" key="IP"></b><br />
+		<input type="text" name="IP" required="required" pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" placeholder="ex: 140.117.11.1" /><br />
+		<b class="lang" key="MAC"></b><br />
+		<input type="text"  name="MAC" pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" placeholder="ex: 00-00-00-00-00-00" /><br />
+		<b class="lang" key="PROBLEM"></b><br />
+		<textarea rows="4" cols="50" name="problem" ></textarea><br />
+
+		<input type="submit" value="Submit" />
+		<input type="reset" />
+	</form>
+</div>
+</body>
+
+</html>

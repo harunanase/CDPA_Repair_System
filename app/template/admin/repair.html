@@ -1,0 +1,152 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+
+		{% if current_user.is_authenticated %}
+		<h3>Hi {{ current_user.username }}! </h3>
+		{% else %}
+		<h3>Hi guest, please log in</h3>
+		{% endif %}
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<h5 style="color:red";>{{ message }}</h5>
+			{% endfor %}
+		{% endif %}
+		{% endwith %}
+
+
+		<div class="form_status">
+				<table>
+					<tr>
+						<th>基本資訊</th>
+						<th>可憐的工具人啊，助您能修好。</th>
+					</tr>
+					<tr>
+						<td>報修單編號:</td>
+						<td>{{ form['ID'] }}</td>
+					</tr>
+					<tr>
+						<td>建立時間:</td>
+						<td>{{ form['createTime'] }}</td>
+					</tr>
+					<tr>
+						<td>更新時間:</td>
+						<td>{{ form['updateTime'] }}</td>
+					</tr>
+					<tr>
+						<td>報修人:</td>
+						<td>{{ form['createUser'] }}</td>
+					</tr>
+					<tr>
+						<td>宿舍棟別:</td>
+						<td>{{ form['dorm'] }}</td>
+					</tr>
+					<tr>
+						<td>房號:</td>
+						<td>{{ form['roomNum'] }}</td>
+					</tr>
+					<tr>
+						<td>床號:</td>
+						<td>{{ form['bedNum'] }}</td>
+					</tr>
+					<tr>
+						<td>IP 位址:</td>
+						<td>{{ form['ip'] }}</td>
+					</tr>
+					<tr>
+						<td>MAC 位址:</td>
+						<td>{{ form['mac'] }}</td>
+					</tr>
+					<tr>
+						<td>問題描述:</td>
+						<td>{{ form['description'] }}</td>
+					</tr>
+					<tr>
+						<td>報修單狀態:</td>
+						<td>{{ form['status'] }}</td>
+					</tr>
+				</table>
+
+				<table>
+					<tr>
+						{% if logNum == 0 %}
+						<td>網管回覆 （共{{ logNum }}則）:</td>
+						<td>無/None</td>
+					</tr>
+						{% else %}
+					<tr>
+						<td colspan="4">網管回覆 （共{{ logNum }}則）:</td>
+					</tr>
+					<tr>
+						<td>則數</td>
+						<td>處理時間</td>
+						<td>處理網管</td>
+						<td>回覆</td>
+					</tr>
+					{% for i in range(logNum) %}
+					<tr>	
+						<td>第{{ i+1 }}則：</td>
+						<td>{{ log[i]['repairDate'] }}</td>
+						<td>{{ log[i]['repairManName'] }}</td>
+						<td>{{ log[i]['description'] }}</td>
+					</tr>
+					
+					{% endfor %}
+					{% endif %}
+				</table>
+		</div>
+
+
+
+
+
+		<style>
+				table, th, td {
+				border: 1px solid black;
+				}
+		</style>
+
+
+		<script>
+			function yesnoCheck(that) {
+				if (that.value == "other") {	
+					document.getElementById("ifOther").style.display = "block";
+				} else {
+					document.getElementById("ifOther").style.display = "none";
+				}
+			}
+		</script>
+
+		<form action={{ url_for('.repair') }} method="POST">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+				欲更新的報修單ID: <br>
+					{% if form.ID %}
+						<input type="number" name="formID" value={{ form.ID }}><br>
+					{% else %}
+						<input type="number" name="formID"><br>
+					{% endif %}
+				維修時間: <br>
+					<input type="datetime-local" name="repairTime"><br>
+				網管回覆: <br>
+					<select name="reply" onchange="yesnoCheck(this);">
+				  		<option value="到訪無人，擇日再訪">到訪無人，擇日再訪</option>
+				  		<option value="測試後無異常，若有問題請再報修，謝謝">測試後無異常，若有問題請再報修，謝謝</option>
+				  		<option value="已更換設備，若有問題請再報修，謝謝">已更換設備，若有問題請再報修，謝謝</option>
+				  		<option value="教育部來函鎖定，請另洽圖資處智慧營運組">教育部來函鎖定，請另洽圖資處智慧營運組</option>
+						<option value="other">其他</option>
+					</select><br>
+					<div id="ifOther" style="display: none;">
+						<textarea rows="4" cols="50" name="description" ></textarea><br>
+					</div>
+				更新後狀態: <br>	
+					<select name="status">
+							<option value=1>處理中/In process</option>
+							<option value=2>處理完畢/Finished</option>
+					</select><br><br>
+				<input type="submit" value="Submit" /><br>
+		</form>
+
+		
+
+{% endblock %}

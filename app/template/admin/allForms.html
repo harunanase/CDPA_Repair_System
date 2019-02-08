@@ -1,0 +1,114 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+	<style>
+		table, th, td {
+  		border: 1px solid black;
+		}
+	</style>
+
+			{% if current_user.is_authenticated %}
+				<h3>Hi {{ current_user.username }}! </h3>
+			{% else %}
+				<h3>Hi guest, please log in</h3>
+			{% endif %}
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<h5 style="color:red";>{{ message }}</h5>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+
+	<p> 總報修單數： {{ totalForm }}</p>
+		{% for i in range(totalForm) %}
+			<div class="form_status">
+				<table>
+					<tr>
+						<th>基本資訊</th>
+						<th><a href={{ url_for('.repair', id=list[i]['ID']) }} >前往處理</a></th>
+					</tr>
+					<tr>
+						<td>報修單編號:</td>
+						<td>{{ list[i]['ID'] }}</td>
+					</tr>
+					<tr>
+						<td>建立時間:</td>
+						<td>{{ list[i]['createTime'] }}</td>
+					</tr>
+					<tr>
+						<td>更新時間:</td>
+						<td>{{ list[i]['updateTime'] }}</td>
+					</tr>
+					<tr>
+						<td>報修人:</td>
+						<td>{{ list[i]['createUser'] }}</td>
+					</tr>
+					<tr>
+						<td>宿舍棟別:</td>
+						<td>{{ list[i]['dorm'] }}</td>
+					</tr>
+					<tr>
+						<td>房號:</td>
+						<td>{{ list[i]['roomNum'] }}</td>
+					</tr>
+					<tr>
+						<td>床號:</td>
+						<td>{{ list[i]['bedNum'] }}</td>
+					</tr>
+					<tr>
+						<td>IP 位址:</td>
+						<td>{{ list[i]['ip'] }}</td>
+					</tr>
+					<tr>
+						<td>MAC 位址:</td>
+						<td>{{ list[i]['mac'] }}</td>
+					</tr>
+					<tr>
+						<td>問題描述:</td>
+						<td>{{ list[i]['description'] }}</td>
+					</tr>
+					<tr>
+						<td>報修單狀態:</td>
+						{% if list[i]['status'] == "處理完畢/Finished" %}
+							<td style="color:green">{{ list[i]['status'] }}</td>
+						{% elif list[i]['status'] == "處理中/In process" %}
+							<td style="color:orange">{{ list[i]['status'] }}</td>
+						{% else %}
+							<td style="color:red">{{ list[i]['status'] }}</td>
+						{% endif %}
+					</tr>
+					<tr>
+						<td>網管回覆 （共{{ totalLogsInEachForm[i] }}則）:</td>
+						{% if totalLogsInEachForm[i] == 0 %}
+						<td>無/None</td>
+						{% else %}
+						<td>
+							{% for j in range(totalLogsInEachForm[i]) %}
+								<table>
+										<br>
+										<td>第{{ j+1 }}則：</td>
+										<tr>
+												<td>處理時間:</td>
+												<td>{{ logList[i][j]['repairDate']  }}</td>
+										</tr>
+										<tr>
+												<td>處理網管:</td>
+												<td>{{ logList[i][j]['repairManName']  }}</td>
+										</tr>
+										<tr>
+												<td>回覆:</td>
+												<td>{{ logList[i][j]['description']  }}</td>
+										</tr>
+										<br>
+								</table>
+							{% endfor %}
+						{% endif %}
+						</td>
+					</tr>
+				</table>
+				<br>
+				<br>
+			</div>
+		{% endfor %}
+
+{% endblock %}

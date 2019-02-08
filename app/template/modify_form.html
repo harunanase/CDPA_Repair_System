@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Cache-Control" content="no-cache"/>
+	<meta name="description" content="中山大學CDPA宿舍網路報修系統"/>
+	<meta name="author" content="NSYSU-CDPA"/>
+	<!-- CSS -->
+	<link rel="stylesheet" href={{ url_for("static", filename="css/bootstrap.min.css") }}>
+	<link rel="stylesheet" href={{ url_for("static", filename="css/fontawesome.min.css") }}>
+	<link rel="stylesheet" href={{ url_for("static", filename="css/main.css") }}>
+
+	<title>修改報修單</title>
+</head>
+
+<body>
+		
+		<div id="content" class="container">
+
+				<h1>Hello {{ current_user.username }} !</h1>
+
+				<form action="" method="POST">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+						<input type="hidden" name='formID' value={{ form['id'] }}>
+						宿舍棟別: <br>
+						<select name="dorm">
+							<option value="A" {{ "selected" if form['dorm'] =='A' else "" }} >A</option>
+							<option value="B" {{ "selected" if form['dorm'] =='B' else "" }} >B</option>
+							<option value="C" {{ "selected" if form['dorm'] =='C' else "" }} >C</option>
+							<option value="D" {{ "selected" if form['dorm'] =='D' else "" }} >D</option>
+							<option value="E" {{ "selected" if form['dorm'] =='E' else "" }} >E</option>
+							<option value="F" {{ "selected" if form['dorm'] =='F' else "" }} >F</option>
+							<option value="G" {{ "selected" if form['dorm'] =='G' else "" }} >G</option>
+							<option value="H" {{ "selected" if form['dorm'] =='H' else "" }} >H</option>
+							<option value="L" {{ "selected" if form['dorm'] =='L' else "" }} >L</option>
+							<option value="one" {{ "selected" if form['dorm'] =='one' else "" }} >武一</option>
+							<option value="two" {{ "selected" if form['dorm'] =='two' else "" }} >武二</option>
+							<option value="three" {{ "selected" if form['dorm'] =='three' else "" }} >武三</option>
+							<option value="four" {{ "selected" if form['dorm'] =='four' else "" }} >武四</option>
+							<option value="three" {{ "selected" if form['dorm'] =='three' else "" }} >國際村</option>
+						</select><br>
+
+						房號: <br>
+						<input type="number" name="roomNo" required="required" min="1" max="999" value={{ form['roomNum'] }} /><br />
+						床號:<br>
+						<input type="number" name="bedNo" required="required" min="1" max="4" value={{ form['bedNum'] }} ><br />
+						IP:<br>
+						<input type="text" name="IP" required="required" pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$" value={{ form['ip'] }} ><br />
+						MAC:<br>
+						<input type="text"  name="MAC" pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" value={{ form['mac'] }} ><br />
+						問題描述:<br>
+						<textarea rows="4" cols="50" name="problem">{{ form['description'] }}</textarea><br>
+
+						<input type="submit" value="Submit" /><br>
+				</form>
+		</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+	home page
+	290119 create				by WeiN
+	290120 load other pages		by WeiN
+	290121 bilingual interface	by WeiN
+-->
+<html>
+	<head>
+		<title>中山大學宿網報修系統</title>
+		<!-- Metadata -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="中山大學CDPA宿舍網路報修系統"/>
+		<meta name="author" content="NSYSU-CDPA"/>
+		<!-- CSS -->
+		<link rel="stylesheet" href={{ url_for("static", filename="css/bootstrap.min.css") }}>
+		<link rel="stylesheet" href={{ url_for("static", filename="css/fontawesome.min.css") }}>
+		<link rel="stylesheet" href={{ url_for("static", filename="css/main.css") }}>
+
+	</head>
+	<body>
+		<!-- Navigation Bar -->
+		<!-- .navbar-expand-{sm|md|lg|xl}決定在哪個斷點以上就出現漢堡式選單 -->
+		<!-- .bg-dark 背景顏色 .navbar-dark 文字顏色 -->
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+			<!-- Logo -->
+			<h1><a class="navbar-brand" href="http://www.cdpa.nsysu.edu.tw" id="logo" target="_blank">CDPA</a></h1>
+			
+			<!-- Toggler/collapsibe Button 漢堡式選單按鈕 -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<!-- 漢堡式選單Icon -->
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<!-- Navbar links -->
+			<!-- .collapse.navbar-collapse 用於外層中斷點群組和隱藏導覽列內容 -->
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<!-- .ml-auto 靠右對齊 -->
+				<ul class="navbar-nav ml-auto">
+					<li id="lang" class="nav-item">
+						<a class="nav-link"></a>
+					</li>
+					<li id="login" class="nav-item">
+						<a class="nav-link"></a>
+					</li>
+					<li id="repair" class="nav-item">
+						<a class="nav-link"></a>
+					</li>
+					<li id="repairstatus" class="nav-item">
+						<a class="nav-link"></a>
+					</li>
+					<li id="bannedlist" class="nav-item">
+						<a class="nav-link"></a>
+					</li>
+					<!-- Dropdown 下拉式選單 -->
+					<li id="tutorial" class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						</a>
+						<!-- 下拉式選單內容 -->
+						<div class="dropdown-menu">
+							<a class="dropdown-item" id="eazy"></a>
+							<a class="dropdown-item" id="lookupIP"></a>
+							<a class="dropdown-item" id="queryMAC"></a>
+							<a class="dropdown-item" id="queryIPConflict"></a>
+						</div>
+					</li>
+					<li id="home" class="nav-item">
+						<a class="nav-link"></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		
+		<!-- Content -->
+		<div id="content" class="container">
+			{% if current_user.is_authenticated %}
+				<h3>Hi {{ current_user.username }}! </h3>
+			{% else %}
+				<h3>Hi guest, please log in</h3>
+			{% endif %}
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+						<h5 style="color:red";>{{ message }}</h5>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+
+			<ul>
+				<li id="content1"><p></p></li>
+				<li id="content2"><p></p></li>
+				<li id="content3"><p></p></li>
+			</ul>
+		</div>
+		
+		<!-- Go Top -->
+		<div id="goTop">
+			<a href="#"><i class="fa fa-angle-up fa-2x"></i></a>
+		</div>
+		
+		<!-- Footer -->
+		<footer id="footer" class="container">
+			<div class="row">
+				<div class="col">
+					<div id="copyright">
+						<ul class="menu">
+							<li>&copy; <a href="http://www.cdpa.nsysu.edu.tw" title="CDPA Website" target="_blank">NSYSU-CDPA</a></li>
+							<li><a href="https://zh-tw.facebook.com/NSYSUCDPA/" target="_blank"><img src={{ url_for("static", filename="img/facebook_logo.png") }} alt="CDPA Facebook" style="width:30px;height:30px;" /></a></li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<!-- Scripts -->
+		<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
+		<script type="text/javascript" src={{ url_for("static", filename="js/bootstrap.min.js") }}></script>
+		<script type="text/javascript" src={{ url_for("static", filename="js/function.js") }}></script>
+		<script>
+				getQueryParam( {{ 1 if (current_user.is_authenticated) else 0 }} )
+				translate(language, userStats);
+				goTop_Check();
+		</script>
+
+	</body>
+</html>

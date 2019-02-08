@@ -1,0 +1,25 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<h1>Hello {{ current_user.username }} !</h1>
+
+<form action={{ url_for('.update') }} method="POST">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+		欲更新的報修單ID: <br>
+			{% if id %}
+				<input type="number" name="formID" value={{ id }}><br>
+			{% else %}
+				<input type="number" name="formID"><br>
+			{% endif %}
+		維修時間: <br>
+			<input type="datetime-local" name="repairTime"><br>
+		網管回覆: <br>
+			<textarea rows="4" cols="50" name="description" ></textarea><br>
+		更新後狀態: <br>	
+			<select name="status">
+					<option value=1>處理中/In process</option>
+					<option value=2>處理完畢/Finished</option>
+			</select><br><br>
+		<input type="submit" value="Submit" /><br>
+</form>
+{% endblock %}

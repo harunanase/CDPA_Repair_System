@@ -10,7 +10,7 @@ from sqlalchemy.orm import joinedload
 
 
 """ Flask application and database config """
-app = Flask(__name__, static_folder='static', template_folder='templates')
+app = Flask(__name__, static_folder='static', template_folder='template')
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://haruna:harunamywife@localhost/CDPA_repairSYS"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.urandom(24) 
