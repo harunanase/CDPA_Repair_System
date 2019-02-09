@@ -55,7 +55,7 @@ Third, system start. You can sepcify your desire port, otherwise, the program ru
 
 	
 	$ cd app/
-	$ python3 app.py --port=YOUR_PORT
+	$ python3 main.py --port=YOUR_PORT
 
 
 
