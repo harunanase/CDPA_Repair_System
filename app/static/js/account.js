@@ -5,44 +5,46 @@
 			190127		rename file 為 account.js
 	2.1		190128		fix pattern bug
 	2.2		190130		追加英文訊息
+	2.3		190209		修改變數名稱
 	require jquery.js & md5.js 請事先引用
+	require sha256.min.js 請事先引用
 ***/
 
 //----
 //define
 //----
-const ACCOUNT = {	//帳號限制
+const OurACCOUNT = {	//帳號限制
 	MIN : 4,	//最小長度(字元
 	MAX : 24,	//最大長度(字元
 	PATTERN : /^[A-Z][0-9]+$/,	//規範
 };
 
-const MAIL = {	//郵件限制
+const OurMAIL = {	//郵件限制
 	MIN : 0,	//最小長度(字元
 	MAX : 128,	//最大長度(字元
 	PATTERN : /^[0-9a-zA-Z\.]+@[0-9a-zA-Z\.]+$/,	//規範
 };
 
-const PASSWORD = {	// 密碼限制
+const OurPASSWORD = {	// 密碼限制
 	MIN : 4,	//最小長度(字元
 	MAX : 24,	//最大長度(字元
 	PATTERN :　/^[0-9a-zA-Z]+$/,	//規範
 };
 
-const INFO = {	//訊息文本
+const OurINFO = {	//訊息文本
 	EN : {	//英
 		HINT : {//提示訊息
 			waitForMail : "You may receive our verification letter in a few minutes."
 		},
 		ERR : {//錯誤訊息
 			//不合法輸入
-			accountLength : "the length of account should be " + ACCOUNT.MIN + "~" + ACCOUNT.MAX ,
+			accountLength : "the length of account should be " + OurACCOUNT.MIN + "~" + OurACCOUNT.MAX ,
 			accountContain : "account should be a student ID ( first letter capitalized ). Example: B012345678",
 			
-			mailLength : "the length of mailbox address should be " + MAIL.MIN + "~" + MAIL.MAX ,
+			mailLength : "the length of mailbox address should be " + OurMAIL.MIN + "~" + OurMAIL.MAX ,
 			mailContain : "mail address is incorrect. example: user@mail.com",
 						
-			passwordLength : "the length of password should be " + PASSWORD.MIN + "~" + PASSWORD.MAX ,
+			passwordLength : "the length of password should be " + OurPASSWORD.MIN + "~" + OurPASSWORD.MAX ,
 			passwordContain : "password only contain 0-9,a-z or A-Z ",
 			passwordDoubleCheck : "password and verify must be same"
 		}
@@ -53,13 +55,13 @@ const INFO = {	//訊息文本
 		},
 		ERR : {//錯誤訊息
 			//不合法輸入
-			accountLength : "帳號長度錯誤 " + ACCOUNT.MIN + "~" + ACCOUNT.MAX + "字",
+			accountLength : "帳號長度錯誤 " + OurACCOUNT.MIN + "~" + OurACCOUNT.MAX + "字",
 			accountContain : "account should be a student ID ( first letter capitalized ). Example: B012345678",
 			
-			mailLength : "郵件長度錯誤 " + MAIL.MIN + "~" + MAIL.MAX + "字",
+			mailLength : "郵件長度錯誤 " + OurMAIL.MIN + "~" + OurMAIL.MAX + "字",
 			mailContain : "mail address is incorrect. example: user@mail.com",
 						
-			passwordLength : "密碼長度錯誤 " + PASSWORD.MIN + "~" + PASSWORD.MAX + "字",
+			passwordLength : "密碼長度錯誤 " + OurPASSWORD.MIN + "~" + OurPASSWORD.MAX + "字",
 			passwordContain : "password only contain 0-9,a-z or A-Z ",
 			passwordDoubleCheck : "password and verify must be same"
 		}
@@ -70,7 +72,14 @@ const INFO = {	//訊息文本
 //var
 //----
 
-var info = INFO.ZH;	//輸出提示之來源
+var info = OurINFO.ZH;	//輸出提示之來源
+var howToHash = {	//hash function control option
+	method : {
+		md5 : "md5",
+		sha256 : "sha256"
+	},
+	cur : "sha256"
+};
 
 //----
 //func
@@ -78,17 +87,25 @@ var info = INFO.ZH;	//輸出提示之來源
 
 function hash(x){
 	//雜湊手段 +-保障密碼隱私
-	return $.md5(x);
+	switch(howToHash.cur){
+		case howToHash.method.md5:
+			return $.md5(x);
+		case howToHash.method.sha256:
+			return sha256(x);
+		default:
+			alert('err : function hash(x)');
+			return x;
+	}
 }
 
 function setFormLang(){//確認表格語系 
 	var pattern = /lang=[^&#]*/i;
 	var lang = pattern.exec(location.search);
 	if (lang == "lang=en"){//判斷語言
-		info = INFO.EN;
+		info = OurINFO.EN;
 	}
 	else{
-		info = INFO.ZH;
+		info = OurINFO.ZH;
 	}
 }
 
@@ -97,11 +114,11 @@ var CHECK = {//字串檢測
 	ACCOUNT : function(string){
 		//帳號檢測
 		this.message = "";
-		if(string.length < ACCOUNT.MIN || string.length > ACCOUNT.MAX){
+		if(string.length < OurACCOUNT.MIN || string.length > OurACCOUNT.MAX){
 			this.message = info.ERR.accountLength;
 			return false;
 		}
-		if(!ACCOUNT.PATTERN.test(string)){
+		if(!OurACCOUNT.PATTERN.test(string)){
 			this.message = info.ERR.accountContain;
 			return false;
 		}
@@ -110,11 +127,11 @@ var CHECK = {//字串檢測
 	MAIL : function(string){
 		//郵件檢測
 		this.message = "";
-		if(string.length < MAIL.MIN || string.length > MAIL.MAX){
+		if(string.length < OurMAIL.MIN || string.length > OurMAIL.MAX){
 			this.message = info.ERR.mailLength;
 			return false;
 		}
-		if(!MAIL.PATTERN.test(string)){
+		if(!OurMAIL.PATTERN.test(string)){
 			this.message = info.ERR.mailContain;
 			return false;
 		}
@@ -123,11 +140,11 @@ var CHECK = {//字串檢測
 	PASSWORD : function(string){
 		//密碼檢測
 		this.message = "";
-		if(string.length < PASSWORD.MIN || string.length > PASSWORD.MAX){
+		if(string.length < OurPASSWORD.MIN || string.length > OurPASSWORD.MAX){
 			this.message = info.ERR.passwordLength;
 			return false;
 		}
-		if(!PASSWORD.PATTERN.test(string)){
+		if(!OurPASSWORD.PATTERN.test(string)){
 			this.message = info.ERR.passwordContain;
 			return false;
 		}

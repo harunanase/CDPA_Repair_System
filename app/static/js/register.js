@@ -3,9 +3,10 @@
 	此js為搭配register.html 之使用
     1.0		190129		by imgc	
 	1.1		190201		修改id 及 function化 描述注入 local化部分變數
+	2.1		190209		修改變數名稱
 	require jquery.js
 ***/
-const DESCRIPTION = {
+const OurDESCRIPTION = {
 	EN : '\
 		<p>Please use the student number to be account.</p>\
     	<p>The mailbox is used to verify the account and may be used to receive our notice in the future.</p>\
@@ -26,13 +27,13 @@ function registerPageSet(){
 	}
 	
 	if(lang == "lang=zh"){
-		document.getElementById('description').innerHTML = DESCRIPTION.ZH;
+		document.getElementById('description').innerHTML = OurDESCRIPTION.ZH;
 	}
 	else if (lang == "lang=en"){
-		document.getElementById('description').innerHTML = DESCRIPTION.EN;
+		document.getElementById('description').innerHTML = OurDESCRIPTION.EN;
 	}
 	else{
-		document.getElementById('description').innerHTML = DESCRIPTION.ERR + lang;
+		document.getElementById('description').innerHTML = OurDESCRIPTION.ERR + lang;
 	}
 }
 
