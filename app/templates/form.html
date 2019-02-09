@@ -2,13 +2,12 @@
 <html>
 <head>
 	<meta charset="UTF-8"/>
-		<script type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="staticjs/form_lang.js"></script>
+	<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
+	<script type="text/javascript" src={{ url_for("static", filename="js/form_lang.js") }}></script>
 	<title>CDPA 報修單</title>
 </head>
 <!--
-		<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
-		<script type="text/javascript" src={{ url_for("static", filename="js/form_lang.js") }}></script>
+		
 	2019/1/31 chia-chih updated
 	修正頁面為可用jQuery進行中英文切換
 	2019/1/25 chia-chih updated
