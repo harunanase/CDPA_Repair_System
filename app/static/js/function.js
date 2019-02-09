@@ -249,12 +249,12 @@ function goTop_Check() {
 	});
 }
 
-getQueryParam(userStats);
+//getQueryParam(userStats);
 /*
  * get the dictionary from trans.json
  */
-$.getJSON("localhost/json", function(data) {
+/*$.getJSON("http://127.0.0.1/json", function(data) {
     trans = $.parseJSON(data);
     translate(language);
-});
-goTop_Check();
+});*/
+//goTop_Check();

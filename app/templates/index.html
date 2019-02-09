@@ -121,7 +121,14 @@
 		<script type="text/javascript" src={{ url_for("static", filename="js/function.js") }}></script>
 		<script>
 				getQueryParam( {{ 1 if (current_user.is_authenticated) else 0 }} )
-				translate(language, userStats);
+				/*$.getJSON("http://127.0.0.1/json", function(data) {
+    				trans = $.parseJSON(data);
+    				translate(language);
+				});*/
+$.getJSON("https://api.github.com/gists/76f401c40cec86a1d05ab652fbfc72e3", function(data) {
+	trans = $.parseJSON(data["files"]["trans.json"].content);
+	translate(language);
+});
 				goTop_Check();
 		</script>
 
