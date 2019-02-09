@@ -11,7 +11,8 @@ const ACTION = {
 	Register : 5,	//註冊
 	Forget : 6,		//忘記密碼
 	Home : 7,		//登入成功後首頁
-	Logout : 8
+	Logout : 8,
+	ModifyRepair : 9
 };
 var action = ACTION.None;	// 0: Repair, 1: RepairStatus, 2: BannedList, 3: Tutorial, ...參照ACTION
 
@@ -135,6 +136,9 @@ function getQueryParam(is_authenticated) {
 					case "Logout":
 						action = ACTION.Logout;
 						break;
+					case "ModifyRepair":
+						action = ACTION.ModifyRepair;
+						break;
 				}
 			}
 			else if(paramsVal[0] == "type") {
@@ -176,7 +180,7 @@ function getQueryParam(is_authenticated) {
 						}
 						else {
 							$(document).ready(function() {
-								$("#content").load("en/trouble_shooting.html");
+								$("#content").load("en_trouble_shooting.html");
 							});
 						}
 						break;
@@ -217,6 +221,11 @@ function getQueryParam(is_authenticated) {
 					$("#content").load("logout.html");
 				});
 				break;
+			case ACTION.ModifyRepair:
+				$(document).ready(function() {
+					$("#content").load("modify_form.html");
+				});
+				break;
 		}
 	}
 }
@@ -240,7 +249,7 @@ function goTop_Check() {
 	});
 }
 
-//getQueryParam(userStats);
+getQueryParam(userStats);
 /*
  * get the dictionary from trans.json
  */
@@ -248,4 +257,4 @@ $.getJSON("https://api.github.com/gists/76f401c40cec86a1d05ab652fbfc72e3", funct
 	trans = $.parseJSON(data["files"]["trans.json"].content);
 	translate(language);
 });
-//goTop_Check();
+goTop_Check();
