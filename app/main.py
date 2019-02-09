@@ -65,7 +65,13 @@ def query_mac():
 def query_ip_Conflict():
     return render_template('./queryIPConflict.html')
 
+@app.route('/under_construction.html')
+def under_construction():
+    return render_template('./under_construction.html')
 
+@app.route('/banned.html')
+def banned():
+    return redirect(url_for('under_construction'))
 
 @app.route('/register.html', methods = ['GET', 'POST'])
 def regist_request():

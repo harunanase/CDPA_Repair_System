@@ -25,7 +25,7 @@ def convert_form2human_readable(form):
     formDict['updateTime'] = form.updateTime
     formDict['createUser'] = form.createUser
     formDict['dorm'] = form.dorm
-    formDict['roomNum'] = form.roomNum
+    formDict['roomNum'] = "{:03d}".format(form.roomNum)
     formDict['bedNum'] = form.bedNum
     formDict['ip'] = form.ip
     
