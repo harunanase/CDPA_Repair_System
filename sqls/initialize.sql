@@ -17,7 +17,7 @@ DROP DATABASE IF EXISTS CDPA_repairSYS;
 CREATE DATABASE CDPA_repairSYS;
 
 /* create user */
-SET GLOBAL validate_password.policy=LOW;
+/*SET GLOBAL validate_password.policy=LOW;*/
 CREATE USER IF NOT EXISTS 'haruna'@'localhost' IDENTIFIED BY 'harunamywife';
 GRANT ALL PRIVILEGES ON CDPA_repairSYS.* TO 'haruna'@'localhost';
 
