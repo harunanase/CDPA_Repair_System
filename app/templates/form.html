@@ -2,11 +2,12 @@
 <html>
 <head>
 	<meta charset="UTF-8"/>
-		<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
-		<script type="text/javascript" src={{ url_for("static", filename="js/form_lang.js") }}></script>
+	<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
+	<script type="text/javascript" src={{ url_for("static", filename="js/form_lang.js") }}></script>
 	<title>CDPA 報修單</title>
 </head>
 <!--
+		
 	2019/1/31 chia-chih updated
 	修正頁面為可用jQuery進行中英文切換
 	2019/1/25 chia-chih updated
@@ -50,7 +51,7 @@
 			<option value="two" class="lang" key="VILLAGE2"></option>
 			<option value="three" class="lang" key="VILLAGE3"></option>
 			<option value="four" class="lang" key="VILLAGE4"></option>
-			<option value="international" class="lang" key="INTERNATIONAL"></option>
+			<option value="internationl" class="lang" key="INTERNATIONAL"></option>
 		</select><br />
 
 		<b class="lang" key="ROOMNO"></b><br />
@@ -64,8 +65,8 @@
 		<b class="lang" key="PROBLEM"></b><br />
 		<textarea rows="4" cols="50" name="problem" ></textarea><br />
 
-		<input type="submit" value="Submit" />
-		<input type="reset" />
+		<input name="sub" type="submit"  />
+		<input name="res" type="reset"  />
 	</form>
 </div>
 </body>
