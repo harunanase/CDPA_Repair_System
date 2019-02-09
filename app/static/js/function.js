@@ -259,12 +259,4 @@ function goTop_Check() {
 	});
 }
 
-//getQueryParam(userStats);
-/*
- * get the dictionary from trans.json
- */
-/*$.getJSON("http://127.0.0.1/json", function(data) {
-    trans = $.parseJSON(data);
-    translate(language);
-});*/
-//goTop_Check();
+

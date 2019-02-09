@@ -171,7 +171,8 @@ def modify_form():
 def logout():
     logout_user()
     flash("Logout Success!")
-    return redirect(url_for('login'))
+    return render_template('index.html', action='Login', jsonDict=json2dict())
+
 
 
 @app.route('/protected')

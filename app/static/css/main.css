@@ -35,7 +35,6 @@ ul.menu li {
 	padding: 0.75em;
 	margin-bottom: 0;
 }
-
 	#header .inner {
 		background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35)), url("img/bg02.png");
 		background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35)), url("img/bg02.png");
@@ -116,3 +115,10 @@ ul.menu li {
 	background:#0099CC;
 }
 
+#construction {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 25%;
+	height: 25%;
+}
