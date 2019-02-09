@@ -34,9 +34,11 @@ def get_form_html_data():
     description = request.form[c.get_formHtml_text_form_name()['description']]
 
 
-    if(mac != ''):
+    if(mac != '' and mac != None):
         # the mac need special cast, from 00-00-00-11-22-33 to 000000112233
         mac = mac.replace('-', '')
+    else:
+        mac = '000000000000'
 
     # print(dorm, roomNum, bedNum, ip, mac, description)
     # print(type(dorm), type(roomNum), type(bedNum), type(ip), type(mac), type(description))
@@ -84,13 +86,22 @@ def get_request_repair_form_id():
 
 def get_modify_form_request_data():
 
+
+    mac = request.args.get('mac')
+    if(mac != '' and mac != None):
+        # the mac need special cast, from 00-00-00-11-22-33 to 000000112233
+        mac = mac.replace('-', '')
+    else:
+        mac = '000000000000'
+
+
     form =  {
                 'id' :          request.args.get('id'),
                 'dorm':         request.args.get('dorm'),
                 'roomNum':      request.args.get('roomNum'),
                 'bedNum':       request.args.get('bedNum'),
                 'ip':           request.args.get('ip'),
-                'mac':          request.args.get('mac'),
+                'mac':          mac,
                 'description':  request.args.get('description')
             }
 
