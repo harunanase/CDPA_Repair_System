@@ -116,3 +116,10 @@ ul.menu li {
 	background:#0099CC;
 }
 
+#construction {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 25%;
+	height: 25%;
+}

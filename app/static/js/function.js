@@ -12,7 +12,8 @@ const ACTION = {
 	Forget : 6,		//忘記密碼
 	Home : 7,		//登入成功後首頁
 	Logout : 8,
-	ModifyRepair : 9
+	ModifyRepair : 9,
+	Constructing : 10
 };
 var action = ACTION.None;	// 0: Repair, 1: RepairStatus, 2: BannedList, 3: Tutorial, ...參照ACTION
 
@@ -139,6 +140,9 @@ function getQueryParam(is_authenticated) {
 					case "ModifyRepair":
 						action = ACTION.ModifyRepair;
 						break;
+					case "Constructing":
+						action = ACTION.Constructing;
+						break;
 				}
 			}
 			else if(paramsVal[0] == "type") {
@@ -224,6 +228,11 @@ function getQueryParam(is_authenticated) {
 			case ACTION.ModifyRepair:
 				$(document).ready(function() {
 					$("#content").load("modify_form.html");
+				});
+				break;
+			case ACTION.Constructing:
+				$(document).ready(function() {
+					$("#content").load("under_construction.html");
 				});
 				break;
 		}
