@@ -47,6 +47,12 @@ def index():
 def trouble_shooting():
     return render_template('./trouble_shooting.html')
 
+
+@app.route('/en_trouble_shooting.html')
+def en_trouble_shooting():
+    return render_template('./en_trouble_shooting.html')
+
+
 @app.route('/queryMAC.html')
 def query_mac():
     return render_template('./queryMAC.html')

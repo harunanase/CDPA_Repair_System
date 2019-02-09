@@ -39,7 +39,7 @@ text-align: center;
 				<th>基本資訊</th>
 				<th>
 						{% if (formList[i].status == "尚未處理/Not process yet") %}
-						<a href={{ url_for("modify_form", dorm=formList[i].dorm, roomNum=formList[i].roomNum,
+						<a href={{ url_for("index", action='ModifyRepair', dorm=formList[i].dorm, roomNum=formList[i].roomNum,
 								bedNum=formList[i].bedNum, ip=formList[i].ip, mac=formList[i].mac, id=formList[i].ID,
 								description=formList[i].description ) }}>修改報修單</a>
 						{% endif %}
