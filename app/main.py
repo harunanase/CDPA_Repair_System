@@ -32,7 +32,7 @@ def load_user(user_id):
 
 
 # json parsing
-def renderblog():
+def json2dict():
     filename = os.path.join(app.static_folder, 'json/trans.json')
     with open(filename) as blog_file:
         data = json.load(blog_file)
@@ -45,16 +45,11 @@ def renderblog():
 """----------"""
 @app.route('/')
 def index():
-    return render_template('./index.html')
+    return render_template('./index.html', jsonDict = json2dict())
 
 @app.route('/trouble_shooting.html')
 def trouble_shooting():
     return render_template('./trouble_shooting.html')
-
-@app.route('/json')
-def trans_json():
-    data = renderblog()
-    return jsonify(data)
 
 
 @app.route('/en_trouble_shooting.html')
