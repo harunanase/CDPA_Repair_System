@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from flask import request, render_template, redirect, url_for, flash
+from flask import request, render_template, redirect, url_for, flash, jsonify
 from flask_login import login_required, login_user, logout_user, current_user
 
 
@@ -8,8 +8,8 @@ import application
 import admin
 import security
 import db_api as dbapi
-
-
+import os
+import json
 
 """ Argument parsing """
 parser = ArgumentParser()
@@ -31,8 +31,12 @@ def load_user(user_id):
 
 
 
-
-
+# json parsing
+def renderblog():
+    filename = os.path.join(app.static_folder, 'json/trans.json')
+    with open(filename) as blog_file:
+        data = json.load(blog_file)
+        return data
 
 
 
@@ -46,6 +50,11 @@ def index():
 @app.route('/trouble_shooting.html')
 def trouble_shooting():
     return render_template('./trouble_shooting.html')
+
+@app.route('/json')
+def trans_json():
+    data = renderblog()
+    return jsonify(data)
 
 
 @app.route('/en_trouble_shooting.html')

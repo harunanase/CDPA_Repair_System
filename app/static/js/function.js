@@ -253,8 +253,8 @@ getQueryParam(userStats);
 /*
  * get the dictionary from trans.json
  */
-$.getJSON("https://api.github.com/gists/76f401c40cec86a1d05ab652fbfc72e3", function(data) {
-	trans = $.parseJSON(data["files"]["trans.json"].content);
-	translate(language);
+$.getJSON("localhost/json", function(data) {
+    trans = $.parseJSON(data);
+    translate(language);
 });
 goTop_Check();
