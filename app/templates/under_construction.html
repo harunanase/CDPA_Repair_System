@@ -5,11 +5,11 @@
 		<title>中山大學宿網報修系統</title>
 		<meta name="author" content="NSYSU-CDPA"/>
 		<!-- CSS -->
-		<link rel="stylesheet" href="assets/css/main.css">
+		<link rel="stylesheet" href={{ url_for("static", filename="css/main.css") }}>
 	</head>
 	<body>
 		<div class="content">
-			<img id="construction" src="assets/img/Site-under-construction-sign.jpg" alt="Site-under-construction-sign" />
+				<img id="construction" src={{ url_for("static", filename="img/Site-under-construction-sign.jpg") }} alt="Site-under-construction-sign" />
 		</div>
 	</body>
 </html>
