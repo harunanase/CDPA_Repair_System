@@ -3,6 +3,8 @@
     1.0		190202		by imgc
 	2.0		190206		完成篩選功能
 	2.1		190206		添加state篩選
+	2.2		190209		修改dorm filter方式 減少前後端摩擦 
+	
 	required imgcClass.js
 ***/
 const viewList = {// view list config
@@ -31,7 +33,12 @@ var filter ={		//篩選
 	method : [		//row篩選函式		**欲添加篩選功能請添加於此處 true 表欲顯示**
 		function(row){	//dorm filter
 			var keyValue = row.getElementsByTagName('td')[viewList.column.dorm].firstChild.nodeValue;
-			return filter.dorm[keyValue];
+			for(index in filter.dormTag){
+				if(filter.dorm[filter.dormTag[index]].test(keyValue) == true){
+					return true;
+				}
+			}
+			return false;
 		},
 		function(row){	//state filter
 			var keyValue = row.getElementsByTagName('td')[viewList.column.state].firstChild.nodeValue;
@@ -45,7 +52,13 @@ var filter ={		//篩選
 	],
 	setting : function(){// set filter 	**欲添加篩選功能請修改此處**
 		for(index in filter.dormTag){	//create dorm arguments in filter
-			filter.dorm[filter.dormTag[index]] = document.getElementsByName(filter.dormTag[index]).item(0).checked;
+			var option = document.getElementsByName(filter.dormTag[index]).item(0);
+			if(option.checked == true){
+				filter.dorm[filter.dormTag[index]] = new RegExp(filter.dormTag[index]);
+			}
+			else{
+				filter.dorm[filter.dormTag[index]] = /^$/;//null string match
+			}
 		}
 		for(index in filter.stateTag){	//create dorm arguments in filter
 			var option = document.getElementsByName(filter.stateTag[index]).item(0);

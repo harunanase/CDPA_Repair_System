@@ -1,0 +1,174 @@
+<!--
+	報修清單 此處僅實作table 及 連結相關應用
+    1.0		190202		by imgc
+    2.0		190206		完成篩選
+    2.1		190206		添加state篩選
+    2.2		190209		修正後端注入格式 fix filter bug
+-->
+{% extends 'admin/master.html' %}
+{% block body %}
+<style>
+table{
+	width:640px;
+	background-color:white;
+	border: 1px solid DarkGray;
+	text-align:center;
+}
+th{
+	border-top: 1px solid DarkGray;
+	border-bottom: 1px solid DarkGray;
+}
+.collapseBox{
+	min-width: 640px;
+	display:inline-block;
+	border: 1px solid black;
+}
+.collapseBox .title{
+	padding: 5px;
+	background-color: LightBlue ;
+}
+.collapseBox .content{
+	background-color: white;
+	padding: 5px;
+}
+.checkBlock{
+}
+.checkBlock .selectAll{
+}
+.checkBlock .cancelAll{
+}
+.checkBlock .selectOption{
+}
+</style>
+
+		{% if current_user.is_authenticated %}
+			<h3>Hi {{ current_user.username }}! </h3>
+		{% else %}
+			<h3>Hi guest, please log in</h3>
+		{% endif %}
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<h5 style="color:red";>{{ message }}</h5>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+
+<div class="collapseBox" id="filterBox">
+	<div class="title">
+    	Filter
+    </div>
+    <div class="content">
+    	<form id="filterForm" onSubmit="paintViewList(); return false" ><!-- Filter option -->
+        	<table id="stateFilter">
+            	<thead>
+                    <tr>
+                        <th colspan="3">state</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="checkBlock">
+                        <td>
+                            <input type="checkbox" class="selectAll" name="stateAll">全選</input>
+                            <input type="checkbox" class="cancelAll" name="stateNot">全否</input>
+                        </td>
+                        <td>
+                            <input type="checkbox" class="selectOption" name="stateFinish" value="Finished">Finished</input>
+                            <input type="checkbox" class="selectOption" name="stateInProc" value="In process" checked="checked">In process</input>
+                            <input type="checkbox" class="selectOption" name="stateNotProc" value="Not process" checked="checked">Not process</input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table id="dormFilter">
+                <thead>
+                    <tr>
+                        <th colspan="3">dorm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="checkBlock">
+                        <td>
+                            <label>翠亨</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" class="selectAll" name="D_7all" checked="checked">全選</input>
+                            <input type="checkbox" class="cancelAll" name="D_7not">全否</input>
+                        </td>
+                        <td>
+                            <input type="checkbox" class="selectOption" name="A" checked="checked">A</input>
+                            <input type="checkbox" class="selectOption" name="B" checked="checked">B</input>
+                            <input type="checkbox" class="selectOption" name="C" checked="checked">C</input>
+                            <input type="checkbox" class="selectOption" name="D" checked="checked">D</input>
+                            <input type="checkbox" class="selectOption" name="E" checked="checked">E</input>
+                            <br />
+                            <input type="checkbox" class="selectOption" name="F" checked="checked">F</input>
+                            <input type="checkbox" class="selectOption" name="G" checked="checked">G</input>
+                            <input type="checkbox" class="selectOption" name="H" checked="checked">H</input>
+                            <input type="checkbox" class="selectOption" name="L" checked="checked">L</input>
+                        </td>
+                    </tr>
+                    <tr class="checkBlock">
+                        <td>
+                            <label>武嶺</label>
+                        </td>
+                        <td>
+                            <input type="checkbox" class="selectAll" name="D_8all" checked="checked">全選</input>
+                            <input type="checkbox" class="cancelAll" name="D_8not">全否</input>
+                        </td>
+                        <td>
+                            <input type="checkbox" class="selectOption" name="one" checked="checked">武1</input>
+                            <input type="checkbox" class="selectOption" name="two" checked="checked">武2</input>
+                            <input type="checkbox" class="selectOption" name="three" checked="checked">武3</input>
+                            <input type="checkbox" class="selectOption" name="four" checked="checked">武4</input>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" value="submit" style="width:100%"/>
+        </form>
+    </div>
+</div>
+
+<br/>
+<span id="info" style="color:red">&nbsp;</span><!-- view some operation message -->
+
+<table id="viewList"><!-- view -->
+	<thead><!-- title -->
+    	<tr>
+            <th onClick="sorter.sortBy('seq')"> Seq </th>
+            <th onClick="sorter.sortBy('dorm')"> Dorm </th>
+            <th onClick="sorter.sortBy('room')"> Room-Bed </th>
+            <th onClick="sorter.sortBy('update')"> Update </th>
+            <th onClick="sorter.sortBy('poster')"> Poster </th>
+            <th onClick="sorter.sortBy('state')"> State </th>
+            <th> Link </th>
+        </tr>
+    </thead>
+    </tbody><!-- **該表由後端填入 按下述格式填入innerHtml** -->
+	{% for i in range(totalForm) %}
+						<tr>
+							<td> {{ list[i]['ID'] }} </td>
+							<td> {{ list[i]['dorm'] }} </td>
+							<td> {{ list[i]['roomNum'] }}-{{ list[i]['bedNum'] }} </td>
+							<td> {{ list[i]['updateTime'] }} </td>
+							<td> {{ list[i]['createUser'] }} </td>
+							
+							{% if list[i]['status'] == "處理完畢/Finished" %}
+								<td style="color:green">{{ list[i]['status'] }}</td>
+							{% elif list[i]['status'] == "處理中/In process" %}
+								<td style="color:orange">{{ list[i]['status'] }}</td>
+							{% else %}
+								<td style="color:red">{{ list[i]['status'] }}</td>
+							{% endif %}
+							
+							<td> <a href={{ url_for('.repair', id=list[i]['ID']) }} >前往處理</a> </td>
+						</tr>
+	{% endfor %}
+    </tbody>
+</table>
+<script type="text/javascript" src={{ url_for("static", filename="js/imgcClass.js") }}></script>
+<script type="text/javascript" src={{ url_for("static", filename="js/fixRequestList.js") }}></script>
+
+{% endblock %}
+

@@ -11,7 +11,7 @@ from sqlalchemy.orm import joinedload
 
 """ Flask application and database config """
 app = Flask(__name__, static_folder='static', template_folder='templates')
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://haruna:harunamywife@localhost/CDPA_repairSYS"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://haruna:harunamywife@localhost/CDPA_repairSYS?charset=utf8mb4"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = os.urandom(24) 
 db = SQLAlchemy(app)
