@@ -3,8 +3,6 @@
     1.0		190202		by imgc
 	2.0		190206		完成篩選功能
 	2.1		190206		添加state篩選
-	2.2		190209		修改dorm filter方式 減少前後端摩擦 
-	
 	required imgcClass.js
 ***/
 const viewList = {// view list config
@@ -83,7 +81,8 @@ var filter ={		//篩選
 		"one",
 		"two",
 		"three",
-		"four"
+		"four",
+		"internation"
 	],
 	dorm : {},		//method dorm filter 保留參數
 	stateTag : [		//state name 參數
@@ -198,4 +197,3 @@ for(index in checkBlocks){
 }
 
 paintViewList();//initial viewList view
-

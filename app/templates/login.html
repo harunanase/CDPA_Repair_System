@@ -3,6 +3,7 @@
     1.0		190118		by imgc
     1.1		190121		重新調整表單
     1.2		190201		修改id
+    1.3		190210		添加sha256.min.js
 -->
 <!DOCTYPE html>
 <html>
@@ -56,7 +57,7 @@
     <div>
 		<a id="link_register" href={{ url_for("regist_request") }}>註冊 Register</a>
         <br/>
-        <a id="forget" href="">忘記密碼 Forget password?</a>
+        <a id="link_forget" href="">忘記密碼 Forget password?</a>
     </div>
 </div>
 <div id="content-2" class="box">
@@ -72,6 +73,7 @@
 script
 -->
 		<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
+        <script type="text/javascript" src={{ url_for("static", filename="js/sha256.min.js") }}></script>
 		<script type="text/javascript" src={{ url_for("static", filename="js/md5.js") }}></script>
 		<script type="text/javascript" src={{ url_for("static", filename="js/account.js") }}></script>
 		<script type="text/javascript" src={{ url_for("static", filename="js/login.js") }}></script>

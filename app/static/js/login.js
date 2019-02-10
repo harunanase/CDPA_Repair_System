@@ -4,9 +4,10 @@
 	此js為搭配login.html 之使用
     1.0		190127		by imgc	
 	1.1		190201		修改id 及 function化 描述注入 local化部分變數
+	2.1		190209		修改變數名稱
 	require jquery.js
 ***/
-const DESCRIPTION = {
+const OurDESCRIPTION = {
 	EN : '<p>\
 			Please read the <a id="link_troubleCheck" href="" target="_blank">self-checking method</a> before you apply for fix request. You need to register for the first login. The account is used to help students confirm their request.   CDPA usually work from 19:00 to 21:00 on working day. Depending on the availability of our staff, it may take one to two weeks.\
         	</p>\
@@ -32,13 +33,13 @@ function loginPageSet(){
 	}
 	
 	if(lang == "lang=zh"){
-		document.getElementById('description').innerHTML = DESCRIPTION.ZH;
+		document.getElementById('description').innerHTML = OurDESCRIPTION.ZH;
 	}
 	else if (lang == "lang=en"){
-		document.getElementById('description').innerHTML = DESCRIPTION.EN;
+		document.getElementById('description').innerHTML = OurDESCRIPTION.EN;
 	}
 	else{
-		document.getElementById('description').innerHTML = DESCRIPTION.ERR + lang;
+		document.getElementById('description').innerHTML = OurDESCRIPTION.ERR + lang;
 	}
 	
 	$("#link_register").attr("href", ref + "?action=Register&" + lang);

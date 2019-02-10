@@ -3,6 +3,8 @@
     1.0		190202		by imgc
     2.0		190206		完成篩選
     2.1		190206		添加state篩選
+    2.2		190209		fix 後端注入錯誤產生bug
+    2.3		190210		添加國際村選項 
 -->
 {% extends 'admin/master.html' %}
 {% block body %}
@@ -120,6 +122,7 @@ th{
                             <input type="checkbox" class="selectOption" name="two" checked="checked">武2</input>
                             <input type="checkbox" class="selectOption" name="three" checked="checked">武3</input>
                             <input type="checkbox" class="selectOption" name="four" checked="checked">武4</input>
+                            <input type="checkbox" class="selectOption" name="internation" checked="checked">國際</input>
                         </td>
                     </tr>
                 </tbody>
@@ -144,9 +147,8 @@ th{
             <th> Link </th>
         </tr>
     </thead>
-
-	{% for i in range(totalForm) %}
-					<tbody><!-- **該表由後端填入 按下述格式填入innerHtml** -->
+	<tbody><!-- **該表由後端填入 按下述格式填入innerHtml** -->
+		{% for i in range(totalForm) %}
 						<tr>
 							<td> {{ list[i]['ID'] }} </td>
 							<td> {{ list[i]['dorm'] }} </td>
@@ -164,8 +166,9 @@ th{
 							
 							<td> <a href={{ url_for('.repair', id=list[i]['ID']) }} >前往處理</a> </td>
 						</tr>
-					</tbody>
-	{% endfor %}
+
+		{% endfor %}
+	</tbody>
 </table>
 <script type="text/javascript" src={{ url_for("static", filename="js/imgcClass.js") }}></script>
 <script type="text/javascript" src={{ url_for("static", filename="js/fixRequestList.js") }}></script>
