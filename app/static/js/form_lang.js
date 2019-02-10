@@ -15,7 +15,9 @@ var arrLang = {
 		"VILLAGE2": "Village 2",
 		"VILLAGE3": "Village 3",
 		"VILLAGE4": "Village 4",
-		"INTERNATIONAL": "International Dorm"
+		"INTERNATIONAL": "International Dorm",
+		"SUB": "Submit",
+		"RES": "Reset"
     },
     "zh": {
         "DORM": "宿舍棟別",
@@ -28,7 +30,9 @@ var arrLang = {
 		"VILLAGE2": "武二",
 		"VILLAGE3": "武三",
 		"VILLAGE4": "武四",
-		"INTERNATIONAL": "國際村"
+		"INTERNATIONAL": "國際村", 
+		"SUB": "提交",
+		"RES": "重設"
     }
 };  
 
@@ -49,6 +53,8 @@ $(document).ready(function() {
 	$(".lang").each(function(){
 		$(this).text(arrLang[lang][$(this).attr("key")]);
 	});
+	$('input[name=sub]').val(arrLang[lang]["SUB"]);
+	$('input[name=res]').val(arrLang[lang]["RES"]);
 
 });
   
