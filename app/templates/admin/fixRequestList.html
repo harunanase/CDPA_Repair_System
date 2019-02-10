@@ -5,6 +5,7 @@
     2.1		190206		添加state篩選
     2.2		190209		fix 後端注入錯誤產生bug
     2.3		190210		添加國際村選項 
+    2.31	190210		fix 排序後 table paint		
 -->
 {% extends 'admin/master.html' %}
 {% block body %}
@@ -138,12 +139,12 @@ th{
 <table id="viewList"><!-- view -->
 	<thead><!-- title -->
     	<tr>
-            <th onClick="sorter.sortBy('seq')"> Seq </th>
-            <th onClick="sorter.sortBy('dorm')"> Dorm </th>
-            <th onClick="sorter.sortBy('room')"> Room-Bed </th>
-            <th onClick="sorter.sortBy('update')"> Update </th>
-            <th onClick="sorter.sortBy('poster')"> Poster </th>
-            <th onClick="sorter.sortBy('state')"> State </th>
+            <th onClick="sorter.sortBy('seq');paintViewList()"> Seq </th>
+            <th onClick="sorter.sortBy('dorm');paintViewList()"> Dorm </th>
+            <th onClick="sorter.sortBy('room');paintViewList()"> Room-Bed </th>
+            <th onClick="sorter.sortBy('update');paintViewList()"> Update </th>
+            <th onClick="sorter.sortBy('poster');paintViewList()"> Poster </th>
+            <th onClick="sorter.sortBy('state');paintViewList()"> State </th>
             <th> Link </th>
         </tr>
     </thead>
