@@ -79,12 +79,12 @@ def regist_request():
         user, passwd, repasswd, email = utils_app.get_register_html_data()
         if( security.check_valid_registration(user, passwd, repasswd, email) ):
             dbapi.regist_account(user, passwd, email)
-            flash('regist success!')
+            flash('註冊成功/Regist success!')
             return redirect(url_for('index'))
 
         else: 
             # registration failed, return to regist.html
-            flash('regist failed, the username has been used')
+            flash('註冊失敗，帳號名稱已被使用/Regist failed, the username has been used.')
             return redirect(url_for('regist_request'))
     else:
         return render_template('./register.html')
@@ -101,10 +101,10 @@ def login():
         if( dbapi.check_is_valid_user(username, password) ):
             user = application.User.query.filter_by(username=username).first()
             login_user(user)
-            flash('Login success!')
+            flash('登錄成功/Login success!')
             return redirect(url_for('index'))
         else:
-            flash('Wrong username or password!')
+            flash('帳號或密碼錯誤/Wrong username or password!')
 
     return render_template('./login.html')
 
@@ -119,10 +119,10 @@ def form():
         repairForm = utils_app.get_form_html_data()
         if( security.check_valid_repairForm(repairForm) ):
             dbapi.submit_repairForm(current_user.username, repairForm)
-            flash('Submit Success')
+            flash('提交成功/Submit Success')
             return redirect(url_for('index'))
         else:
-            flash('Invalid repair form, repair form duplication')
+            flash('表單格式錯誤，重複報修/Invalid repair form, repair form duplication')
             return redirect(url_for('form'))
     else:
         return render_template('./form.html')
@@ -138,7 +138,7 @@ def get_form():
     totalForm = len(formList)
     totalLogsInEachForm = [ len(i) for i in logList ]
     if( totalForm == 0 ):
-        flash("No exisit form!")
+        flash("無報修單/No exisit form!")
     return render_template('./form_status.html', totalForm = totalForm, formList = formList,
                                 totalLogsInEachForm = totalLogsInEachForm, logList = logList)
 
@@ -152,10 +152,10 @@ def modify_form():
         formID = utils_app.get_request_repair_form_id()
         if( security.check_valid_revise_repairForm(reviseForm) ):
             dbapi.update_repairForm(formID, reviseForm)
-            flash("Modify Success")
+            flash("修改成功/Modify Success")
             return redirect(url_for('index'))
         else:
-            flash('Invalid repair form')
+            flash('報修單格式錯誤/Invalid repair form')
             return redirect(url_for('modify_form'))
     else:
         oldFormData = utils_app.get_modify_form_request_data()
@@ -170,7 +170,7 @@ def modify_form():
 @login_required
 def logout():
     logout_user()
-    flash("Logout Success!")
+    flash("登出成功/Logout Success!")
     return render_template('index.html', action='Login', jsonDict=json2dict())
 
 

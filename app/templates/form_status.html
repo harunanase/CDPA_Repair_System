@@ -93,12 +93,6 @@ text-align: center;
 
 		<table>
 			<tr>
-				{% if totalLogsInEachForm[i] == 0 %}
-				<td>網管回覆 （共{{ totalLogsInEachForm[i] }}則）:</td>
-				<td>無/None</td>
-			</tr>
-				{% else %}
-			<tr>
 				<td colspan="4">網管回覆 （共{{ totalLogsInEachForm[i] }}則）:</td>
 			</tr>
 			<tr>
@@ -115,7 +109,6 @@ text-align: center;
 				<td>{{ logList[i][j].description  }}</td>
 			</tr>
 			{% endfor %}
-			{% endif %}
 		</table>
 		<br>
 		<br>

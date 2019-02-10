@@ -1,5 +1,5 @@
 from sqlalchemy.orm import joinedload
-import datetime as dt
+from sqlalchemy import desc
 
 
 
@@ -70,8 +70,8 @@ def submit_admin_update_form(adminName, form):
 
 def get_repairForm_by_username(username):
     
-    formList = RepairForm.query.filter_by(createUser=username).all()
-    
+    formList = RepairForm.query.filter_by(createUser=username).order_by(desc(RepairForm.ID))
+   
     # convert status to human readable
     formList =  [ convert_form2human_readable(i) for i in formList ]
 
