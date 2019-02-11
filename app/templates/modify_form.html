@@ -2,26 +2,17 @@
 <html>
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta http-equiv="Cache-Control" content="no-cache"/>
-	<meta name="description" content="中山大學CDPA宿舍網路報修系統"/>
-	<meta name="author" content="NSYSU-CDPA"/>
-	<!-- CSS -->
-	<link rel="stylesheet" href={{ url_for("static", filename="css/bootstrap.min.css") }}>
-	<link rel="stylesheet" href={{ url_for("static", filename="css/fontawesome.min.css") }}>
-	<link rel="stylesheet" href={{ url_for("static", filename="css/main.css") }}>
-
+	
 	<title>修改報修單</title>
 </head>
 
 <body>
 		
-		<div id="content" class="container">
+		<div id="content-1" class="container">
 
 				<h1>Hello {{ current_user.username }} !</h1>
 
-				<form action="" method="POST">
+				<form action={{ url_for('modify_form') }} method="POST">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 						<input type="hidden" name='formID' value={{ form['id'] }}>
 						宿舍棟別: <br>

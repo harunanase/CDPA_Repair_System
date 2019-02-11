@@ -73,6 +73,12 @@ def under_construction():
 def banned():
     return redirect(url_for('under_construction'))
 
+
+@app.route('/forget.html')
+def forget():
+    return redirect(url_for('under_construction'))
+
+
 @app.route('/register.html', methods = ['GET', 'POST'])
 def regist_request():
     if request.method == 'POST':
@@ -143,13 +149,12 @@ def get_form():
                                 totalLogsInEachForm = totalLogsInEachForm, logList = logList)
 
 
-@app.route('/modify_form.html', methods = ['POST', 'GET'])
+@app.route('/modify_form.html', methods = ['GET', 'POST'])
 @login_required
 def modify_form():
 
     if request.method == 'POST':
-        reviseForm = utils_app.get_form_html_data()
-        formID = utils_app.get_request_repair_form_id()
+        reviseForm, formID = utils_app.get_modify_form_post_html_data()
         if( security.check_valid_revise_repairForm(reviseForm) ):
             dbapi.update_repairForm(formID, reviseForm)
             flash("修改成功/Modify Success")

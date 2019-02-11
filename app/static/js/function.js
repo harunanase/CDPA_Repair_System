@@ -83,6 +83,25 @@ function translate(trans, lang) {
 	});
 }
 
+
+
+var myid, mydorm, myroomNum, mybedNum, myip, mymac, mydescription;
+
+function parsing_modifyForm_arguments(tag, val) {
+
+		switch(tag) {
+				case 'id':		myid = val; 		break;
+				case 'dorm': 	mydorm = val;		break;
+				case 'roomNum': myroomNum = val;	break;
+				case 'bedNum':	mybedNum = val;		break;
+				case 'ip':		myip = val;			break;
+				case 'mac':		mymac = val;		break;
+				case 'description': mydescription = val; break;
+		}
+}
+
+
+
 /*
  * get URL parameters
  */
@@ -156,6 +175,10 @@ function getQueryParam(is_authenticated) {
 					type = TYPE.QueryIPConflict;
 				}
 			}
+			else {
+				// for modify_form.html parsing arguments
+				parsing_modifyForm_arguments(paramsVal[0], paramsVal[1])
+			}
 		}
 		// page loading
 		switch(action) {
@@ -227,7 +250,9 @@ function getQueryParam(is_authenticated) {
 				break;
 			case ACTION.ModifyRepair:
 				$(document).ready(function() {
-					$("#content").load("modify_form.html");
+					$("#content").load("modify_form.html?id="+myid + "&dorm="+mydorm + "&roomNum="+myroomNum + 
+											"&bedNum="+mybedNum + "&ip="+myip + "&mac="+mymac + 
+														"&description="+mydescription);
 				});
 				break;
 			case ACTION.Constructing:

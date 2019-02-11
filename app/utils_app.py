@@ -86,14 +86,15 @@ def get_request_repair_form_id():
 
 def get_modify_form_request_data():
 
+    # this function is used to get oldform data via html argument, so we
+    # need to change the value of mac from 000000000000 to 00-00-00-00-00-00
+    # the value without '-' is the data we get from the html argument
 
     mac = request.args.get('mac')
-    if(mac != '' and mac != None):
-        # the mac need special cast, from 00-00-00-11-22-33 to 000000112233
-        mac = mac.replace('-', '')
-    else:
-        mac = '000000000000'
-
+    
+    
+    if( mac == '000000000000' ):
+        mac = '00-00-00-00-00-00'
 
     form =  {
                 'id' :          request.args.get('id'),
@@ -125,3 +126,33 @@ def get_admin_repair_data():
             }
 
     return form
+
+
+def get_modify_form_post_html_data():
+    c = ConstantsFront()
+    dorm = request.form[c.get_formHtml_text_form_name()['dorm']]
+    roomNum = request.form[c.get_formHtml_text_form_name()['roomNum']]
+    bedNum = request.form[c.get_formHtml_text_form_name()['bedNum']]
+    ip = request.form[c.get_formHtml_text_form_name()['ip']]
+    mac = request.form[c.get_formHtml_text_form_name()['mac']]
+    description = request.form[c.get_formHtml_text_form_name()['description']]
+
+
+    if(mac != '' and mac != None):
+        # the mac need special cast, from 00-00-00-11-22-33 to 000000112233
+        mac = mac.replace('-', '')
+    else:
+        mac = '000000000000'
+
+    repairForm = {
+            'dorm' :        dorm,
+            'roomNum' :     int(roomNum),
+            'bedNum' :      int(bedNum), 
+            'ip' :          ip,
+            'mac' :         mac,
+            'description' : description
+        }
+    
+    return repairForm, request.form.get('formID')
+
+
