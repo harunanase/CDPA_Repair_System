@@ -6,7 +6,6 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<meta http-equiv="Cache-Control" content="no-cache"/>
 		<title>中山大學宿網報修系統</title>
 		<meta name="author" content="NSYSU-CDPA"/>
 	</head>
@@ -14,26 +13,23 @@
 		<div class="content">
 		<h2>Tutorial - Query MAC Address</h2>
 		<ul>
-		<li>Windows 2K/XP命令列模式
+		<li>Windows Command Line
 		<ul>
-			<li>開始 &gt; 執行</li>
-			<li><img alt="Windows 2K/XP命令列模式圖片1" src={{ url_for("static", filename="img/tutorial/QueryMAC/XP01.JPG") }}/>
-			</li>
-			<li>在開啟的欄位鍵入[ cmd ]</li>
-			<li><img alt="Windows 2K/XP命令列模式圖片2" src={{ url_for("static", filename="img/tutorial/QueryMAC/XP02.JPG") }}/>
-			</li>
-			<li>鍵入[ ipconfig /all ]。顯示之「Physical Address」就是您的網路卡卡號(MAC Address)</li>
-			<li><img alt="Windows 2K/XP命令列模式圖片3" src={{ url_for("static", filename="img/tutorial/QueryMAC/XP03.JPG") }}/>
-			</li>
-			<li>然後按下[ 右鍵 ] 選 [ 標記 ]</li>
-			<li><img alt="Windows 2K/XP命令列模式圖片4" src={{ url_for("static", filename="img/tutorial/QueryMAC/XP04.JPG") }}/>
-			</li>
-			<li>請用[ 左鍵 ] 選取要複製的範圍(會反白)，結束時請按[ 右鍵 ](標題列會提示您狀態)</li>
-			<li><img alt="Windows 2K/XP命令列模式圖片5" src={{ url_for("static", filename="img/tutorial/QueryMAC/XP05.JPG") }}/>
-			</li>
+			<li id="WIN1" class="trans">按下快捷鍵 Win+R 開啟執行命令視窗，輸入[ cmd ]後按確定</li>
+			<img alt="Windows 命令列模式圖片1" src="assets/img/tutorial/QueryMAC/WIN01.jpg"/>
+			<li id="WIN2" class="trans">在跳出的視窗輸入指令[ ipconfig /all ]後按Enter鍵，其中實體位址(Physical Address)便是電腦MAC位址</li>
+			<img alt="Windows 命令列模式圖片2" src="assets/img/tutorial/QueryMAC/WIN02.jpg"/>
+			<li id="WIN3" class="trans">在視窗標題列位置按下[ 滑鼠右鍵 ] 選 [ 編輯 &gt; 標記 ]</li>
+			<img alt="Windows 命令列模式圖片3" src="assets/img/tutorial/QueryMAC/WIN03.jpg"/>
+			<li id="WIN4" class="trans">請用[ 滑鼠左鍵 ] 選取要複製的範圍(會反白)，結束時請按[ 滑鼠右鍵 ](標題列會提示您狀態)</li>
+			<img alt="Windows 命令列模式圖片4" src="assets/img/tutorial/QueryMAC/WIN04.jpg"/>
 		</ul>
 		</li>
 		</ul>
 		</div>
+		
+		<!-- Scripts -->
+		<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="assets/js/macTrans.js"></script>
 	</body>
 </html>
