@@ -16,20 +16,20 @@
 		<li>Windows Command Line
 		<ul>
 			<li id="WIN1" class="trans">按下快捷鍵 Win+R 開啟執行命令視窗，輸入[ cmd ]後按確定</li>
-			<img alt="Windows 命令列模式圖片1" src="assets/img/tutorial/QueryMAC/WIN01.jpg"/>
+			<img alt="Windows 命令列模式圖片1" src={{ url_for("static", filename="img/tutorial/QueryMAC/WIN01.jpg") }}/>
 			<li id="WIN2" class="trans">在跳出的視窗輸入指令[ ipconfig /all ]後按Enter鍵，其中實體位址(Physical Address)便是電腦MAC位址</li>
-			<img alt="Windows 命令列模式圖片2" src="assets/img/tutorial/QueryMAC/WIN02.jpg"/>
+			<img alt="Windows 命令列模式圖片2" src={{ url_for("static", filename="img/tutorial/QueryMAC/WIN02.jpg") }}/>
 			<li id="WIN3" class="trans">在視窗標題列位置按下[ 滑鼠右鍵 ] 選 [ 編輯 &gt; 標記 ]</li>
-			<img alt="Windows 命令列模式圖片3" src="assets/img/tutorial/QueryMAC/WIN03.jpg"/>
+			<img alt="Windows 命令列模式圖片3" src={{ url_for("static", filename="img/tutorial/QueryMAC/WIN03.jpg") }}/>
 			<li id="WIN4" class="trans">請用[ 滑鼠左鍵 ] 選取要複製的範圍(會反白)，結束時請按[ 滑鼠右鍵 ](標題列會提示您狀態)</li>
-			<img alt="Windows 命令列模式圖片4" src="assets/img/tutorial/QueryMAC/WIN04.jpg"/>
+			<img alt="Windows 命令列模式圖片4" src={{ url_for("static", filename="img/tutorial/QueryMAC/WIN04.jpg") }}/>
 		</ul>
 		</li>
 		</ul>
 		</div>
 		
 		<!-- Scripts -->
-		<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="assets/js/macTrans.js"></script>
+		<script type="text/javascript" src={{ url_for("static", filename="js/jquery-3.3.1.min.js") }}></script>
+		<script type="text/javascript" src={{ url_for("static", filename="js/macTrans.js") }}></script>
 	</body>
 </html>
