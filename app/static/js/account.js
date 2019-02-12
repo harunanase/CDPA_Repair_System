@@ -6,8 +6,9 @@
 	2.1		190128		fix pattern bug
 	2.2		190130		追加英文訊息
 	2.3		190209		修改變數名稱
+	2.4		190212		修改login check 參數
 	require jquery.js & md5.js 請事先引用
-	require sha256.min.js 請事先引用
+	require sha256.min.js 請事先引用 
 ***/
 
 //----
@@ -17,6 +18,7 @@ const OurACCOUNT = {	//帳號限制
 	MIN : 4,	//最小長度(字元
 	MAX : 24,	//最大長度(字元
 	PATTERN : /^[A-Z][0-9]+$/,	//規範
+	PATTERN_LOW : /^[A-Za-z0-9_]+$/, //低規範
 };
 
 const OurMAIL = {	//郵件限制
@@ -38,6 +40,8 @@ const OurINFO = {	//訊息文本
 		},
 		ERR : {//錯誤訊息
 			//不合法輸入
+			loginFail : "Wrong account or password!",
+			
 			accountLength : "the length of account should be " + OurACCOUNT.MIN + "~" + OurACCOUNT.MAX ,
 			accountContain : "account should be a student ID ( first letter capitalized ). Example: B012345678",
 			
@@ -55,6 +59,8 @@ const OurINFO = {	//訊息文本
 		},
 		ERR : {//錯誤訊息
 			//不合法輸入
+			loginFail : "帳號或密碼錯誤!",
+			
 			accountLength : "帳號長度錯誤 " + OurACCOUNT.MIN + "~" + OurACCOUNT.MAX + "字",
 			accountContain : "account should be a student ID ( first letter capitalized ). Example: B012345678",
 			
@@ -119,6 +125,19 @@ var CHECK = {//字串檢測
 			return false;
 		}
 		if(!OurACCOUNT.PATTERN.test(string)){
+			this.message = info.ERR.accountContain;
+			return false;
+		}
+		return true;
+	},
+	ACCOUNT_LOW : function(string){//low stricted use in login check
+		//帳號檢測
+		this.message = "";
+		if(string.length < OurACCOUNT.MIN || string.length > OurACCOUNT.MAX){
+			this.message = info.ERR.accountLength;
+			return false;
+		}
+		if(!OurACCOUNT.PATTERN_LOW.test(string)){
 			this.message = info.ERR.accountContain;
 			return false;
 		}
@@ -194,12 +213,12 @@ function submitForm(opt, form){
 
 function checkForm_login(form){
 	//check form for login page
-	if(!CHECK.ACCOUNT(form.elements.namedItem('account').value)){
-		//document.getElementById('info').innerHTML = CHECK.message;
+	if(!CHECK.ACCOUNT_LOW(form.elements.namedItem('account').value)){
+		document.getElementById('info').innerHTML = info.ERR.loginFail;
 		return false;
 	}
 	if(!CHECK.PASSWORD(form.elements.namedItem('password').value)){
-		//document.getElementById('info').innerHTML = CHECK.message;
+		document.getElementById('info').innerHTML = info.ERR.loginFail;
 		return false;
 	}
 	document.getElementById('info').innerHTML = "&nbsp;";
