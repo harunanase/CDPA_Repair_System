@@ -21,6 +21,11 @@ Feb. 13th, 2019, 13:47
 ```
 
 
+Feb. 13th, 2019, 19:10
+```
+	1. 更新IP conflict page image and add English version
+```
+
 ## Requirement:
 
 
