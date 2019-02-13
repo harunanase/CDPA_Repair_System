@@ -26,6 +26,7 @@ class MyAdminIndexView(AdminIndexView):
 
 class AdminLogModelView(ModelView):
       
+    can_create = False
     can_delete = False  # disable model deletion, admin log can not be remove or edit
     can_edit = False    # disable model edit
     column_searchable_list = ['formID', 'repairManName']
@@ -40,7 +41,7 @@ class RepairFormModelView(ModelView):
     
     column_list = ['ID', 'createUser', 'createTime', 'updateTime', 'dorm', 'roomNum', 'bedNum',
                                     'ip', 'mac', 'description', 'status']
-
+    can_create = False
     can_delete = False
     can_edit = False
     column_searchable_list = ['dorm', 'roomNum', 'ip', 'mac', 'createUser']
@@ -53,6 +54,7 @@ class RepairFormModelView(ModelView):
     
 class UserModelView(ModelView):
     
+    can_create = False
     create_modal = True
     edit_modal = True
     column_searchable_list = ['username', 'email']    

@@ -4,6 +4,17 @@
 Using python3, flask, and sqlalchemy
 
 
+## Update Log:
+
+Feb. 13th, 2019, 13:36
+```
+	1. 前端登入頁面 帳號格式限定修復
+	2. 後端admin介面 管理員修復日期的顯示問題修復
+	3. 後端admin database page, 取消創建功能，僅能使用一般user介面新增資料
+```
+
+
+
 
 ## Requirement:
 
