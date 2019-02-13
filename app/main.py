@@ -91,7 +91,7 @@ def regist_request():
         else: 
             # registration failed, return to regist.html
             flash('註冊失敗，帳號名稱已被使用/Regist failed, the username has been used.')
-            return redirect(url_for('regist_request'))
+            return redirect(url_for('index'))
     else:
         return render_template('./register.html')
 
@@ -111,6 +111,7 @@ def login():
             return redirect(url_for('index'))
         else:
             flash('帳號或密碼錯誤/Wrong username or password!')
+            return redirect(url_for('index'))
 
     return render_template('./login.html')
 
@@ -129,7 +130,7 @@ def form():
             return redirect(url_for('index'))
         else:
             flash('表單格式錯誤，重複報修/Invalid repair form, repair form duplication')
-            return redirect(url_for('form'))
+            return redirect(url_for('index'))
     else:
         return render_template('./form.html')
 
@@ -161,7 +162,7 @@ def modify_form():
             return redirect(url_for('index'))
         else:
             flash('報修單格式錯誤/Invalid repair form')
-            return redirect(url_for('modify_form'))
+            return redirect(url_for('index'))
     else:
         oldFormData = utils_app.get_modify_form_request_data()
         return render_template("./modify_form.html", form=oldFormData)

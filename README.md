@@ -14,6 +14,11 @@ Feb. 13th, 2019, 13:36
 ```
 
 
+Feb. 13th, 2019. 13:
+```
+	1. 將登入失敗後的頁面之 redirect 從 login.html 改成 index.html 
+	2. "登入失敗後，按註冊沒反應" 因前項的更改，已無此問題
+```
 
 
 ## Requirement:
