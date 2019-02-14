@@ -27,6 +27,10 @@ myadmin = admin.create_admin(app)
 def load_user(user_id):
     return application.User.query.get(user_id)
 
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    flash("尚未登入，請登入後再繼續/Please login!")
+    return redirect(url_for('login'))
 
 
 
