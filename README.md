@@ -6,7 +6,7 @@ Using python3, flask, and sqlalchemy
 
 ## Update Log:
 
-Feb. 13th, 2019, 13:36
+Feb. 13rd, 2019, 13:36
 ```
 	1. 前端登入頁面 帳號格式限定修復
 	2. 後端admin介面 管理員修復日期的顯示問題修復
@@ -14,17 +14,24 @@ Feb. 13th, 2019, 13:36
 ```
 
 
-Feb. 13th, 2019, 13:47
+Feb. 13rd, 2019, 13:47
 ```
 	1. 將登入失敗後的頁面之 redirect 從 login.html 改成 index.html 
 	2. "登入失敗後，按註冊沒反應" 因前項的更改，已無此問題
 ```
 
 
-Feb. 13th, 2019, 19:10
+Feb. 13rd, 2019, 19:10
 ```
 	1. 更新IP conflict page image and add English version
 ```
+
+
+Feb. 14th, 2019, 14:02
+```
+	1. trouble_shooting 的前往報修 連結修復
+	2. add unauthorized handler
+``` 
 
 ## Requirement:
 
