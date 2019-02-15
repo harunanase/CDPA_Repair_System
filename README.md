@@ -33,6 +33,14 @@ Feb. 14th, 2019, 14:02
 	2. add unauthorized handler
 ``` 
 
+
+Feb. 15th, 2019, 14:08
+```
+	1. 更新en_trouble_shooting 連結
+	2. 手機版文字會被切掉問題修復
+```
+
+
 ## Requirement:
 
 
