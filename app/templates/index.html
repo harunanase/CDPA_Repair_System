@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<!--
-	home page
-	290119 create				by WeiN
-	290120 load other pages		by WeiN
-	290121 bilingual interface	by WeiN
--->
 <html>
 	<head>
 		<title>中山大學宿網報修系統</title>
@@ -120,13 +114,9 @@
 		<script type="text/javascript" src={{ url_for("static", filename="js/bootstrap.min.js") }}></script>
 		<script type="text/javascript" src={{ url_for("static", filename="js/function.js") }}></script>
 		<script>
-				var lang = getQueryParam( {{ 1 if (current_user.is_authenticated) else 0 }} )
-				var trans = JSON.parse('{{ jsonDict | tojson | safe  }}')
-				translate(trans, lang)
-				/*$.getJSON("https://api.github.com/gists/76f401c40cec86a1d05ab652fbfc72e3", function(data) {
-					trans = $.parseJSON(data["files"]["trans.json"].content);
-					translate(language);
-				});*/
+				var lang = getQueryParam( {{ 1 if (current_user.is_authenticated) else 0 }} );
+				var trans = JSON.parse('{{ jsonDict | tojson | safe  }}');
+				translate(trans, lang);
 				goTop_Check();
 		</script>
 
