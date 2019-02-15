@@ -41,6 +41,12 @@ Feb. 15th, 2019, 14:08
 ```
 
 
+
+Feb. 16th, 2019, 00:26
+```
+	1. 修復 duplicate repair form 判定問題
+```
+
 ## Requirement:
 
 
