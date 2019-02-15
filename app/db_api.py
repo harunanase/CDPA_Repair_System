@@ -139,9 +139,10 @@ def check_is_already_have_same_username(username):
 
 def check_is_already_have_same_repairForm(form):
 
-    q = RepairForm.query.filter_by( dorm=form['dorm'], roomNum=form['roomNum'], bedNum=form['bedNum'] )
-    return db.session.query(q.exists()).scalar()
+    q = RepairForm.query.filter( RepairForm.dorm==form['dorm'], RepairForm.roomNum==form['roomNum'], RepairForm.bedNum==form['bedNum'], RepairForm.status!=2)
+    have_form =  db.session.query(q.exists()).scalar()
                                     
+    return have_form
 
 
 def update_user_email_auth(username, newAuth):
