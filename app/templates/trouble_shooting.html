@@ -21,23 +21,23 @@
 	<dl>
 		<dt><a href="https://zh.wikipedia.org/zh-tw/%E7%BD%91%E7%BA%BF" target="_blank">網路線</a></dt>
 			<dd>一般由金屬或玻璃製造而成，用來傳遞網路資訊。常用的網路電纜有三種:雙絞線、同軸電纜和光纖電纜(光纖)。</dd>
-			<ui><img title="網路線(雙絞線)" src="https://images.autobuy.tw/1/9b193874.jpg" alt="網路線" style="width:auto"/></ui>
+			<ui><img title="網路線(雙絞線)" src={{ url_for("static", filename="img/Networking_cable.jpg")}} alt="網路線" width="50%"/></ui>
 		<dt><a href="https://zh.wikipedia.org/zh-tw/%E6%B0%B4%E6%99%B6%E5%A4%B4" target="_blank">水晶頭（英語：Registered jack，RJ）</a></dt>
 			<dd>一種標準化的電信網絡接口，以<a href="https://zh.wikipedia.org/wiki/8P8C" target="_blank">8P8C</a>水晶頭作為接口，廣泛用於乙太網路。</dd>
-			<ui><img title="水晶頭" src="https://a.rimg.com.tw/s1/1/81/83/21005168529795_13_m.jpg" alt="水晶頭" style="width:auto"/></ui>
+			<ui><img title="水晶頭" src={{ url_for("static", filename="img/RJ45.jpg")}} alt="水晶頭" width="50%"/></ui>
 		<dt><a href="https://zh.wikipedia.org/zh-tw/%E7%B6%B2%E8%B7%AF%E6%8F%92%E5%BA%A7" target="_blank">網路孔</a></dt>
 			<dd>電腦網路中行程間資料串流的端點。使用以網際協定（Internet Protocol）為通訊基礎的網路插座，稱為網際插座（Internet socket）</dd>
-			<ui><img title="網路孔" src="https://i.imgur.com/sqEBBJR.jpg" alt="網路孔" style="width:auto"/></ui>
+			<ui><img title="網路孔" src={{ url_for("static", filename="img/Network_socket.jpg")}} alt="網路孔" width="50%"/></ui>
 	</dl>
 </div>
 
 <div class="hardware">
 	<h1>檢查硬體</h1>
-	<ol type="1" style="width:600px;margin-right:15px;line-height:20px;">
+	<ol type="1" style="width:auto;margin-right:15px;line-height:20px;">
 		<li>確認網路線是否有牢固的插在網路孔上(電腦與書桌上的網路孔都要檢查)
 			<ol type="a">
 				<!--報修網址-->
-				<li>若書桌上的網路孔損壞導致網路線無法固定插著，<a href="form.html" target="_blank">請報修</a></li>
+				<li>若書桌上的網路孔損壞導致網路線無法固定插著，<a href={{ url_for('index', action="Repair") }} target="_blank">請報修</a></li>
 				<li>市售網路線的水晶頭有些品牌會略小於正常的水晶頭導致網路線無法牢固的插在網路孔上，建議更換</li>
 				<li>有些筆電會為了讓體積縮小而移除電腦的網路孔，請到各大商場購買USB轉RJ45轉接器</li>
 				
@@ -48,7 +48,7 @@
 
 <div class="setting">
 	<h1>檢查設定</h1>
-	<ol type="1" style="width:600px;margin-right:15px;line-height:20px;">
+	<ol type="1" style="width:auto;margin-right:15px;line-height:20px;">
 		<!--新版宿網手冊連結 & IP查詢 & 網孔封鎖列表-->
 		<li><a href="http://www.cdpa.nsysu.edu.tw/lookUpIP.php" target="_blank">IP查詢</a>，確認自己與室友是不是有誤用別人的IP</li>
 		<li>請參考<a href="#" target="_blank">宿網手冊</a>確認網路設定是否有誤</li>	
