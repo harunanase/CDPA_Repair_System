@@ -127,7 +127,7 @@
 						<input type="number" name="formID"><br>
 					{% endif %}
 				維修時間: <br>
-					<input type="datetime-local" name="repairTime"><br>
+					<input type="datetime-local" name="repairTime" step="1"><br>
 					<script>//note: it is offset to match time zone, not correct ISO time format
 						var t = new Date();
 						document.getElementsByName('repairTime').item(0).value = new Date(t.getTime() - 60000 * t.getTimezoneOffset()).toISOString().split('.')[0];
