@@ -80,7 +80,7 @@ Using python3, flask, and sqlalchemy
 2. run the install.sh script, it will need your mysql root privilege.
 
 ```
-    $ cd CDPA_Repair_System
+	$ cd CDPA_Repair_System
 	$ ./install.sh
 ```
 
