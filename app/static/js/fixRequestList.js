@@ -71,7 +71,7 @@ var filter ={		//篩選
 	dormTag : [		//宿舍name參數
 		"A",
 		"B",
-		"D",
+		"C",
 		"D",
 		"E",
 		"F",
