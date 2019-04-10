@@ -38,7 +38,7 @@ def unauthorized_callback():
 # json parsing
 def json2dict():
     filename = os.path.join(app.static_folder, 'json/trans.json')
-    with open(filename) as blog_file:
+    with open(filename, encoding='utf-8') as blog_file:
         data = json.load(blog_file)
         return data
 
